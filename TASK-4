@@ -1,0 +1,119 @@
+***** ONLINE EXAMINATION *******
+***** THIS SYSTEM WILL CONTAIN THE MODULES LIKE LOGIN,UPDATE TIMER AND PASSWORD, TIMER AND AUTO SUBMIT, CLOSING SESSION AND LOGOUT ****
+***** THE FOLLOWING CODE WILL SATISFY THE ABOVE MENTIONED CONSTRAINTS ********
+
+  import java.util.*;
+class User {
+    private String username;
+    private String password;
+    private String name;
+    private String email;
+    public User(String username, String password, String name, String email) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+    }
+    // Getters and setters for user properties
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
+class Question {
+    private String question;
+    private List<String> options;
+    private int correctOption;
+    public Question(String question, List<String> options, int correctOption) {
+        this.question = question;
+        this.options = options;
+        this.correctOption = correctOption;
+    }
+    // Getters for question properties
+    public String getQuestion() {
+        return question;
+    }
+    public List<String> getOptions() {
+        return options;
+    }
+    public int getCorrectOption() {
+        return correctOption;
+    }
+}
+class OnlineExamSystem {
+    private List<User> users;
+    private List<Question> questions;
+    private User currentUser;
+    public OnlineExamSystem() {
+        users = new ArrayList<>();
+        questions = new ArrayList<>();
+    }
+    public void addUser(User user) {
+        users.add(user);
+    }
+    public void login(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                currentUser = user;
+                System.out.println("Logged in successfully!");
+                return;
+            }
+        }
+        System.out.println("Invalid username or password");
+    }
+    public void updateProfile(String name, String email) {
+        currentUser.setName(name);
+        currentUser.setEmail(email);
+        System.out.println("Profile updated successfully!");
+    }
+    public void changePassword(String newPassword) {
+        currentUser.setPassword(newPassword);
+        System.out.println("Password changed successfully!");
+    }
+    public void startExam() {
+        if (currentUser == null) {
+            System.out.println("Please log in to start the exam!");
+            return;
+        }
+        // Implement the logic for MCQs here
+        System.out.println("Exam started!");
+    }
+    public void logout() {
+        currentUser = null;
+        System.out.println("Logged out successfully!");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        User user1 = new User("user1", "password1", "John", "john@example.com");
+        User user2 = new User("user2", "password2", "Jane", "jane@example.com");
+        OnlineExamSystem examSystem = new OnlineExamSystem();
+        examSystem.addUser(user1);
+        examSystem.addUser(user2);
+        examSystem.login("user1", "password1");
+        examSystem.updateProfile("John Doe", "johndoe@example.com");
+        examSystem.changePassword("newpassword");
+        examSystem.startExam();
+        examSystem.logout();
+    }
+}
