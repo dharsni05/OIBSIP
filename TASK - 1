@@ -1,2 +1,68 @@
-//RESERVATION SYSTEM 
-//THIS CONTAINS THE MODULES LIKE LOGIN, RESERVATION AND CANCELLATION SYSTEM
+****** RESERVATION SYSTEM ************************************************************
+****** THIS CONTAINS THE MODULES LIKE LOGIN, RESERVATION AND CANCELLATION SYSTEM *****
+****** THE FOLLOWING CODE WILL CONTAIN THE ABOVE MENTIONED CONSTRAINTS ***************
+
+ import java.util.Scanner;
+
+public class OnlineReservationSystem {
+    static Scanner scanner = new Scanner(System.in);
+    static String username, password;
+    static boolean isLoggedIn = false;
+
+    public static void main(String[] args) {
+        while (true) {
+            if (!isLoggedIn) {
+                showLoginForm();
+            } else {
+                showMenu();
+            }
+        }
+    }
+
+    public static void showLoginForm() {
+        System.out.println("Welcome to the Online Reservation System");
+        System.out.println("Please log in to continue.");
+        System.out.print("Enter username: ");
+        username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        password = scanner.nextLine();
+
+        // Simulate authentication
+        if (username.equals("admin") && password.equals("admin123")) {
+            System.out.println("Login successful!");
+            isLoggedIn = true;
+        } else {
+            System.out.println("Invalid username or password. Please try again.");
+        }
+    }
+
+    public static void showMenu() {
+        System.out.println("1. Make a reservation");
+        System.out.println("2. Cancel reservation");
+        System.out.println("3. Logout");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                makeReservation();
+                break;
+            case 2:
+                cancelReservation();
+                break;
+            case 3:
+                isLoggedIn = false;
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+    }
+
+    public static void makeReservation() {
+        System.out.println("Reservation system is under construction. Thank you for your understanding.");
+    }
+
+    public static void cancelReservation() {
+        System.out.println("Cancellation system is under construction. Thank you for your understanding.");
+    }
+}
